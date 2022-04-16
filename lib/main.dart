@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:papa_02_carrot/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,30 +15,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red
       ),
-      home:const MyAppPage(),
+      home:const SplashScreen(),
     );
   }
 }
 
 
-
-class MyAppPage extends StatefulWidget {
-  const MyAppPage({Key? key}) : super(key: key);
-
-  @override
-  State<MyAppPage> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyAppPage> {
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child:CircularProgressIndicator(
-          color: Colors.red,
-        )
-      )
-    );
-  }
-}
 
