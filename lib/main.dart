@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:papa_02_carrot/splash_screen.dart';
+import 'package:papa_02_carrot/utils/logger.dart';
 
 void main() {
+  logger.d("app Start");
   runApp(const MyApp());
 }
 
