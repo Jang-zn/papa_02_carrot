@@ -10,15 +10,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "flutter demo",
-      theme: ThemeData(
-        primarySwatch: Colors.red
-      ),
-      home:const SplashScreen(),
+    return FutureBuilder(
+      future: Future.delayed(const Duration(seconds: 2), () => 100),
+      builder: (context, snapshot) {
+        return AnimatedSwitcher(
+          child: initApp(snapshot),
+          duration: const Duration(seconds: 1),
+        );
+      },
     );
+  }
+
+  Widget initApp(AsyncSnapshot<Object?> snapshot) {
+    if (snapshot.hasData) {
+      return const TomatoApp();
+    } else {
+      return const SplashScreen();
+    }
   }
 }
 
+class TomatoApp extends StatelessWidget {
+  const TomatoApp({Key? key}) : super(key: key);
 
-
+  @override
+  Widget build(BuildContext context) {
+    return Container(color: Colors.red);
+  }
+}
