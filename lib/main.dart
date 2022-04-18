@@ -1,8 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:papa_02_carrot/router/locations.dart';
 import 'package:papa_02_carrot/router/router_delegate.dart';
-import 'package:papa_02_carrot/views/auth.dart';
 import 'package:papa_02_carrot/views/splash_screen.dart';
 import 'package:papa_02_carrot/utils/logger.dart';
 
@@ -44,6 +42,9 @@ class TomatoApp extends StatelessWidget {
     return MaterialApp.router(
       routeInformationParser: BeamerParser(),
       routerDelegate: routerDelegate,
+      theme:ThemeData(
+        primarySwatch: Colors.deepOrange
+      )
     );
   }
 }

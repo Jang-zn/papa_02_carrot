@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:papa_02_carrot/views/start/intro.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -8,9 +9,7 @@ class AuthScreen extends StatelessWidget {
     return Scaffold(
       body: PageView(
         children: [
-          const Center(
-            child: Text("Need Auth"),
-          ),
+          const IntroPage(),
           Container(
             color:Colors.accents[2],
           ),
