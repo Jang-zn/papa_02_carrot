@@ -24,7 +24,20 @@ class IntroPage extends StatelessWidget {
                   color: Colors.redAccent,
                   fontWeight: FontWeight.bold),
             ),
-            ExtendedImage.asset('assets/imgs/carrot_intro.png',height: MediaQuery.of(context).size.height*0.4,),
+            Stack(
+              children: [
+                ExtendedImage.asset('assets/imgs/carrot_intro.png'),
+                Positioned(
+                    child: ExtendedImage.asset(
+                      'assets/imgs/carrot_intro_pos.png',
+                    ),
+                  left: 50,
+                  right: 50,
+                  top: 50,
+                  bottom: 50,
+                ),
+              ],
+            ),
             const Text(
               '우리동네 중고 직거래 토마토마켓',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -43,9 +56,7 @@ class IntroPage extends StatelessWidget {
                   child: const Text(
                     "내 동네 설정하고 시작하기",
                     style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold
-                    ),
+                        color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                   onPressed: onButtonClick,
                   style: TextButton.styleFrom(
