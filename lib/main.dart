@@ -43,7 +43,8 @@ class TomatoApp extends StatelessWidget {
       routeInformationParser: BeamerParser(),
       routerDelegate: routerDelegate,
       theme:ThemeData(
-        primarySwatch: Colors.deepOrange
+        primarySwatch: Colors.deepOrange,
+        fontFamily: 'Jalnan'
       )
     );
   }

@@ -20,20 +20,20 @@ class IntroPage extends StatelessWidget {
             const Text(
               "Tomato Market",
               style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 20,
                   color: Colors.redAccent,
                   fontWeight: FontWeight.bold),
             ),
             ExtendedImage.asset('assets/imgs/carrot_intro.png',height: MediaQuery.of(context).size.height*0.4,),
             const Text(
               '우리동네 중고 직거래 토마토마켓',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const Text(
               '토마토마켓은 동네 직거래 마켓이에요'
               '\n내 동네를 설정하고 시작해보세요',
               style: TextStyle(
-                fontSize: 17,
+                fontSize: 15,
               ),
             ),
             Column(
@@ -49,7 +49,7 @@ class IntroPage extends StatelessWidget {
                   ),
                   onPressed: onButtonClick,
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.lightBlue,
+                    backgroundColor: Theme.of(context).primaryColor,
                   ),
                 ),
               ],
