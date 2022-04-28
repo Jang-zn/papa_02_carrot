@@ -1,6 +1,7 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:papa_02_carrot/views/start/address_page.dart';
 import 'package:papa_02_carrot/views/start/intro.dart';
 
 class AuthScreen extends StatelessWidget {
@@ -17,9 +18,7 @@ class AuthScreen extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         children: [
           IntroPage(pageController),
-          Container(
-            color:Colors.accents[2],
-          ),
+          AddressPage(),
           Container(
             color:Colors.accents[5],
           ),

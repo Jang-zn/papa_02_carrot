@@ -9,7 +9,7 @@ class IntroPage extends StatelessWidget {
   PageController pageController;
 
   void onButtonClick() {
-    pageController.animateToPage(1, duration: const Duration(seconds: 1), curve: Curves.ease);
+    pageController.animateToPage(1, duration: const Duration(milliseconds: 300), curve: Curves.ease);
   }
 
   @override

@@ -44,7 +44,8 @@ class TomatoApp extends StatelessWidget {
       routerDelegate: routerDelegate,
       theme:ThemeData(
         primarySwatch: Colors.deepOrange,
-        fontFamily: 'Jalnan'
+        fontFamily: 'Jalnan',
+        hintColor: Colors.grey[300]
       )
     );
   }
