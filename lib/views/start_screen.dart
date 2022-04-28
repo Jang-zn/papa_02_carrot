@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:papa_02_carrot/views/start/address_page.dart';
+import 'package:papa_02_carrot/views/start/auth_page.dart';
 import 'package:papa_02_carrot/views/start/intro.dart';
 
-class AuthScreen extends StatelessWidget {
-  AuthScreen({Key? key}) : super(key: key);
+class StartScreen extends StatelessWidget {
+  StartScreen({Key? key}) : super(key: key);
 
   PageController pageController = PageController();
 
@@ -15,13 +16,11 @@ class AuthScreen extends StatelessWidget {
     return Scaffold(
       body: PageView(
         controller: pageController,
-        physics: const NeverScrollableScrollPhysics(),
+        // physics: const NeverScrollableScrollPhysics(),
         children: [
           IntroPage(pageController),
           AddressPage(),
-          Container(
-            color:Colors.accents[5],
-          ),
+          AuthPage(),
         ],
       ),
     );

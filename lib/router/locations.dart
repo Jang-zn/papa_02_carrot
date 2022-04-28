@@ -1,6 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:papa_02_carrot/views/auth.dart';
+import 'package:papa_02_carrot/views/start_screen.dart';
 import 'package:papa_02_carrot/views/home.dart';
 
 class HomeLocation extends BeamLocation<BeamState> {
@@ -13,7 +13,7 @@ class HomeLocation extends BeamLocation<BeamState> {
         key: ValueKey('home'),
       ),
       BeamPage(
-        child: AuthScreen(),
+        child: StartScreen(),
         key: const ValueKey('auth'),
       ),
     ];
