@@ -13,6 +13,7 @@ class AddressPage extends StatelessWidget {
     return SafeArea(
       minimum: EdgeInsets.all(24),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TextFormField(
             decoration: InputDecoration(
@@ -34,33 +35,34 @@ class AddressPage extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              TextButton.icon(
-                style: TextButton.styleFrom(
-                    backgroundColor: Theme.of(context).primaryColor),
-                onPressed: () {},
-                icon: Icon(CupertinoIcons.compass, color: Colors.white),
-                label: Text(
-                  '현재위치로 찾기',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ],
+          TextButton.icon(
+            style: TextButton.styleFrom(
+                backgroundColor: Theme.of(context).primaryColor),
+            onPressed: () {},
+            icon: Icon(CupertinoIcons.compass, color: Colors.white),
+            label: Text(
+              '현재위치로 찾기',
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           Expanded(
             child: ListView.builder(
-                itemCount:10,
-                itemBuilder: (context, index){
-                  return ListTile(
-                    leading : Icon(Icons.image),
-                    title : Text("address$index",),
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.symmetric(vertical: 4),
+                  color: Colors.accents[index],
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(vertical: 10),
+                    leading: Icon(Icons.image),
+                    title: Text(
+                      "address$index",
+                    ),
                     subtitle: Text("subtitle$index"),
                     trailing: Image.asset('assets/imgs/carrot_intro_pos.png'),
-                    tileColor: Colors.accents[index],
-                  );
-                }
+                  ),
+                );
+              },
             ),
           )
         ],
