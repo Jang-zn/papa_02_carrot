@@ -1,12 +1,15 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:papa_02_carrot/utils/logger.dart';
 
 class IntroPage extends StatelessWidget {
-  const IntroPage({Key? key}) : super(key: key);
+  IntroPage(this.pageController, {Key? key,}) : super(key: key);
+
+  PageController pageController;
 
   void onButtonClick() {
-    logger.d('on textButton Click');
+    pageController.animateToPage(1, duration: const Duration(seconds: 1), curve: Curves.ease);
   }
 
   @override
@@ -15,7 +18,6 @@ class IntroPage extends StatelessWidget {
       builder: (context, constraints) {
         //maybeOf 로 medaiQuery 있는지 없는지도 확인 가능
         Size size = MediaQuery.of(context).size;
-        final sizeOfposImg = (size.width-32)*0.1;
         return SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),

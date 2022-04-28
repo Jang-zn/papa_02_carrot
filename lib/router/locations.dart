@@ -12,9 +12,9 @@ class HomeLocation extends BeamLocation<BeamState> {
         child: HomeScreen(),
         key: ValueKey('home'),
       ),
-      const BeamPage(
+      BeamPage(
         child: AuthScreen(),
-        key: ValueKey('auth'),
+        key: const ValueKey('auth'),
       ),
     ];
   }
