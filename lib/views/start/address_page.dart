@@ -3,6 +3,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/logger.dart';
+
 class AddressPage extends StatelessWidget {
   const AddressPage({Key? key}) : super(key: key);
 
@@ -36,16 +38,31 @@ class AddressPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextButton.icon(
-                  style: TextButton.styleFrom(
-                      backgroundColor: Theme.of(context).primaryColor),
-                  onPressed: () {},
-                  icon: Icon(CupertinoIcons.compass, color: Colors.white),
-                  label: Text(
-                    '현재위치로 찾기',
-                    style: TextStyle(color: Colors.white),
-                  )),
+                style: TextButton.styleFrom(
+                    backgroundColor: Theme.of(context).primaryColor),
+                onPressed: () {},
+                icon: Icon(CupertinoIcons.compass, color: Colors.white),
+                label: Text(
+                  '현재위치로 찾기',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ],
           ),
+          Expanded(
+            child: ListView.builder(
+                itemCount:10,
+                itemBuilder: (context, index){
+                  return ListTile(
+                    leading : Icon(Icons.image),
+                    title : Text("address$index",),
+                    subtitle: Text("subtitle$index"),
+                    trailing: Image.asset('assets/imgs/carrot_intro_pos.png'),
+                    tileColor: Colors.accents[index],
+                  );
+                }
+            ),
+          )
         ],
       ),
     );
