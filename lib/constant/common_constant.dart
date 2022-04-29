@@ -1,0 +1,1 @@
+const double commonPadding = 16.0;
