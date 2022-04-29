@@ -42,12 +42,16 @@ class TomatoApp extends StatelessWidget {
     return MaterialApp.router(
       routeInformationParser: BeamerParser(),
       routerDelegate: routerDelegate,
-      theme:ThemeData(
+      theme: ThemeData(
         primarySwatch: Colors.deepOrange,
         fontFamily: 'Jalnan',
-        hintColor: Colors.grey[300]
-      )
+        hintColor: Colors.grey[300],
+        appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.white,
+            titleTextStyle: TextStyle(color: Colors.black87, fontFamily: 'Jalnan'),
+            elevation:2
+        ),
+      ),
     );
   }
 }
-
