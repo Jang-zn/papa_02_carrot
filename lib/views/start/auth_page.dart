@@ -40,6 +40,7 @@ class AuthPage extends StatelessWidget {
                 ),
                 TextFormField(
                   decoration: InputDecoration(border: inputBorder),
+                  keyboardType: TextInputType.number,
                 )
               ],
             ),
