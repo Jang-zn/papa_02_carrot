@@ -5,11 +5,15 @@ import 'package:papa_02_carrot/views/start/address_page.dart';
 import 'package:papa_02_carrot/views/start/auth_page.dart';
 import 'package:papa_02_carrot/views/start/intro.dart';
 
-class StartScreen extends StatelessWidget {
+class StartScreen extends StatefulWidget {
   StartScreen({Key? key}) : super(key: key);
 
-  PageController pageController = PageController();
+  @override
+  State<StartScreen> createState() => _StartScreenState();
+}
 
+class _StartScreenState extends State<StartScreen> {
+  PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {

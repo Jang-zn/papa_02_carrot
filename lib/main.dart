@@ -51,7 +51,6 @@ class TomatoApp extends StatelessWidget {
             backgroundColor: Colors.deepOrange,
             primary:Colors.white,
             minimumSize: const Size(48,48),
-
           )
         ),
         appBarTheme: const AppBarTheme(
