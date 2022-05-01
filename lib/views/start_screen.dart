@@ -21,8 +21,8 @@ class _StartScreenState extends State<StartScreen> {
         // physics: const NeverScrollableScrollPhysics(),
         children: [
           IntroPage(pageController),
-          AddressPage(),
-          AuthPage(),
+          const AddressPage(),
+          const AuthPage(),
         ],
       ),
     );

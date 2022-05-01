@@ -39,14 +39,8 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class TomatoApp extends StatefulWidget {
+class TomatoApp extends StatelessWidget {
   const TomatoApp({Key? key}) : super(key: key);
-
-  @override
-  State<TomatoApp> createState() => _TomatoAppState();
-}
-
-class _TomatoAppState extends State<TomatoApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
