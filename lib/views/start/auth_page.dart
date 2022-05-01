@@ -74,7 +74,6 @@ class _AuthPageState extends State<AuthPage> {
                       onPressed: (){
                         if(formKey.currentState!=null){
                           bool passed = formKey.currentState!.validate();
-                          print(passed);
                           if(passed) {
                             setState((){
                               _verificationStatus=VerificationStatus.codeSent;
