@@ -26,6 +26,7 @@ class AuthPage extends StatelessWidget {
           body: Padding(
             padding: const EdgeInsets.all(commonPadding),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Row(
                   children: [
@@ -35,7 +36,7 @@ class AuthPage extends StatelessWidget {
                     ),
                     Text('''당근마켓은 휴대폰 번호로 가입해요.
 번호는 안전하게 보관되며 
-어디에도 공개되지 않아요''', style: Theme.of(context).textTheme.subtitle2),
+어디에도 공개되지 않아요''', style: Theme.of(context).textTheme.subtitle1),
                   ],
                 ),
                 const SizedBox(
@@ -46,7 +47,24 @@ class AuthPage extends StatelessWidget {
                   decoration: InputDecoration(border: inputBorder),
                   inputFormatters: [MaskedInputFormatter("000-0000-0000")],
                   keyboardType: TextInputType.phone,
-                )
+                ),
+                const SizedBox(height:10),
+                TextButton(
+                  child:const Text("인증문자 받기",style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold)),
+                  onPressed: (){},
+                  style:TextButton.styleFrom(backgroundColor: Colors.grey)
+                ),
+                const SizedBox(height:16),
+                TextFormField(
+                  decoration: InputDecoration(border: inputBorder),
+                  keyboardType: TextInputType.number,
+                ),
+                const SizedBox(height:10),
+                TextButton(
+                    child:const Text("인증번호 확인",style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold)),
+                    onPressed: (){},
+                    style:TextButton.styleFrom(backgroundColor: Colors.grey)
+                ),
               ],
             ),
           ),

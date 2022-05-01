@@ -46,6 +46,14 @@ class TomatoApp extends StatelessWidget {
         primarySwatch: Colors.deepOrange,
         fontFamily: 'Jalnan',
         hintColor: Colors.grey[300],
+        textButtonTheme: TextButtonThemeData(
+          style:TextButton.styleFrom(
+            backgroundColor: Colors.deepOrange,
+            primary:Colors.white,
+            minimumSize: const Size(48,48),
+
+          )
+        ),
         appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white,
             titleTextStyle: TextStyle(color: Colors.black87, fontFamily: 'Jalnan'),
