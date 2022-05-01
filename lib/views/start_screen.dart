@@ -1,4 +1,3 @@
-// ignore_for_file: must_be_immutable, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:papa_02_carrot/views/start/address_page.dart';
@@ -14,7 +13,6 @@ class StartScreen extends StatefulWidget {
 
 class _StartScreenState extends State<StartScreen> {
   PageController pageController = PageController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

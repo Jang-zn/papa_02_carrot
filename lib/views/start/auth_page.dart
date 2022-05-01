@@ -90,9 +90,9 @@ class _AuthPageState extends State<AuthPage> {
                         if(formKey.currentState!=null){
                           bool passed = formKey.currentState!.validate();
                           if(passed) {
-                            setState(){
+                            setState((){
                               _verificationStatus=VerificationStatus.codeSent;
-                            }
+                            });
                           }
                         }
                       },

@@ -9,9 +9,14 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -34,9 +39,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class TomatoApp extends StatelessWidget {
+class TomatoApp extends StatefulWidget {
   const TomatoApp({Key? key}) : super(key: key);
 
+  @override
+  State<TomatoApp> createState() => _TomatoAppState();
+}
+
+class _TomatoAppState extends State<TomatoApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
