@@ -84,7 +84,8 @@ class _AuthPageState extends State<AuthPage> {
                     ),
                     const SizedBox(height:commonPadding),
                     AnimatedContainer(
-                      duration: const Duration(milliseconds:200),
+                      duration: const Duration(milliseconds:300),
+                      curve: Curves.easeInOut,
                       height:getVerificationStatus(_verificationStatus),
                       child:
                       SingleChildScrollView(
