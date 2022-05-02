@@ -1,9 +1,12 @@
+import 'package:beamer/beamer.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+import 'package:provider/provider.dart';
 
 import '../../constant/auth_page_status.dart';
 import '../../constant/common_constant.dart';
+import '../../states/user_provider.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -153,10 +156,14 @@ class _AuthPageState extends State<AuthPage> {
     setState(() {
       _verificationStatus = VerificationStatus.verifying;
     });
+
     await Future.delayed(Duration(seconds: 2));
 
     setState(() {
       _verificationStatus = VerificationStatus.done;
     });
+    //로그인처리 --> Provider 변경함수 호출시에는 read 써야 무한루프 안돈다..
+    context.read<UserProvider>().setUserAuth(true);
+    Beamer.of(context,).beamToNamed('/home');
   }
 }

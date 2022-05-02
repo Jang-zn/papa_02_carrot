@@ -10,7 +10,7 @@ class SplashScreen extends StatelessWidget {
       color: Colors.white,
       child: Center(
         child:
-        ExtendedImage.asset('assets/imgs/woou3.jpg'),
+        ExtendedImage.asset('assets/imgs/carrot_intro_pos.png'),
       ),
     );
   }

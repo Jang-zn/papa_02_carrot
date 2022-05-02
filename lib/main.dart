@@ -34,7 +34,11 @@ class _MyAppState extends State<MyApp> {
 
   Widget initApp(AsyncSnapshot<Object?> snapshot) {
     if (snapshot.hasData) {
-      return const TomatoApp();
+      return ChangeNotifierProvider<UserProvider>(
+          create: (BuildContext context) {
+            return UserProvider();
+          },
+          child: TomatoApp());
     } else {
       return const SplashScreen();
     }
@@ -43,36 +47,29 @@ class _MyAppState extends State<MyApp> {
 
 class TomatoApp extends StatelessWidget {
   const TomatoApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-
     //<T>에서 어떤 프로바이더인지 명시해준다.
     //이제 하위 위젯에서 전부 UserProvider에 접근 가능
-    return ChangeNotifierProvider<UserProvider>(
-      create: (BuildContext context) {
-        return UserProvider();
-      },
-
-      child: MaterialApp.router(
-        routeInformationParser: BeamerParser(),
-        routerDelegate: routerDelegate,
-        theme: ThemeData(
-          primarySwatch: Colors.deepOrange,
-          fontFamily: 'Jalnan',
-          hintColor: Colors.grey[300],
-          textButtonTheme: TextButtonThemeData(
-            style:TextButton.styleFrom(
-              backgroundColor: Colors.deepOrange,
-              primary:Colors.white,
-              minimumSize: const Size(48,48),
-            )
-          ),
-          appBarTheme: const AppBarTheme(
-              backgroundColor: Colors.white,
-              titleTextStyle: TextStyle(color: Colors.black87, fontFamily: 'Jalnan'),
-              elevation:2
-          ),
-        ),
+    return MaterialApp.router(
+      routeInformationParser: BeamerParser(),
+      routerDelegate: routerDelegate,
+      theme: ThemeData(
+        primarySwatch: Colors.deepOrange,
+        fontFamily: 'Jalnan',
+        hintColor: Colors.grey[300],
+        textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+          backgroundColor: Colors.deepOrange,
+          primary: Colors.white,
+          minimumSize: const Size(48, 48),
+        )),
+        appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.white,
+            titleTextStyle:
+                TextStyle(color: Colors.black87, fontFamily: 'Jalnan'),
+            elevation: 2),
       ),
     );
   }
