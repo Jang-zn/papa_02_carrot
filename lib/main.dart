@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
           create: (BuildContext context) {
             return UserProvider();
           },
-          child: TomatoApp());
+          child: const TomatoApp());
     } else {
       return const SplashScreen();
     }

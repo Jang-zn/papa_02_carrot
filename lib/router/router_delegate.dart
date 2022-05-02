@@ -9,9 +9,10 @@ import 'package:provider/provider.dart';
 final routerDelegate = BeamerDelegate(
   locationBuilder: RoutesLocationBuilder(
     routes:{
+      // ignore: prefer_const_constructors
       '/' : (context, state, data)=>StartScreen(),
-      '/home':(context, state, data)=>HomeScreen(),
-      '/auth':(context, state, data)=>AuthPage(),
+      '/home':(context, state, data)=>const HomeScreen(),
+      '/auth':(context, state, data)=>const AuthPage(),
     },
   ),
 
@@ -23,7 +24,6 @@ final routerDelegate = BeamerDelegate(
       check: (context, location) {
         //유효성검사 로직
         //watch 사용시 값 변경시마다 참조됨 --> obx 개념
-        print("state change : ${context.read<UserProvider>().userState}");
         return Provider.of<UserProvider>(context, listen: false).userState;
       },
       //check==false 일때 이동할 route

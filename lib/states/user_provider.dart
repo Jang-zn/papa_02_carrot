@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../utils/logger.dart';
 
 class UserProvider extends ChangeNotifier{
   bool _userLoggedIn = false;

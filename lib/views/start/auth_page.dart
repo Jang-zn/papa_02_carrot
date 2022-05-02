@@ -114,13 +114,14 @@ class _AuthPageState extends State<AuthPage> {
                               TextButton(
                                 child: (_verificationStatus ==
                                         VerificationStatus.verifying)
-                                    ? CircularProgressIndicator(
+                                    ? const CircularProgressIndicator(
                                         color: Colors.white,
                                       )
-                                    : Text("인증번호 확인"),
+                                    : const Text("인증번호 확인"),
                                 onPressed: () {
                                   //키보드 내리기
-                                  FocusScopeNode currFocus = FocusScope.of(context);
+                                  FocusScopeNode currFocus =
+                                      FocusScope.of(context);
                                   currFocus.unfocus();
                                   //
                                   attemptVerify();
@@ -157,13 +158,16 @@ class _AuthPageState extends State<AuthPage> {
       _verificationStatus = VerificationStatus.verifying;
     });
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
     setState(() {
       _verificationStatus = VerificationStatus.done;
     });
+
     //로그인처리 --> Provider 변경함수 호출시에는 read 써야 무한루프 안돈다..
     context.read<UserProvider>().setUserAuth(true);
-    Beamer.of(context,).beamToNamed('/home');
+    Beamer.of(
+      context,
+    ).beamToNamed('/home');
   }
 }
