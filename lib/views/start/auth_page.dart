@@ -7,6 +7,7 @@ import '../../constant/common_constant.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
+
   @override
   State<AuthPage> createState() => _AuthPageState();
 }
@@ -15,10 +16,11 @@ class _AuthPageState extends State<AuthPage> {
   final inputBorder =
       const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey));
 
-  final TextEditingController phoneController = TextEditingController(text:"010");
+  final TextEditingController phoneController =
+      TextEditingController(text: "010");
 
   final TextEditingController codeController = TextEditingController();
-  VerificationStatus _verificationStatus=VerificationStatus.none;
+  VerificationStatus _verificationStatus = VerificationStatus.none;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -34,80 +36,99 @@ class _AuthPageState extends State<AuthPage> {
             backgroundColor: Colors.white,
           ),
           body: SingleChildScrollView(
-            child: Form(
-              key:formKey,
-              child: Padding(
-                padding: const EdgeInsets.all(commonPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Row(
-                      children: [
-                        ExtendedImage.asset(
-                          'assets/imgs/lock.png',
-                          width: size.width * 0.15,
-                        ),
-                        Text('''당근마켓은 휴대폰 번호로 가입해요.
+            child: IgnorePointer(
+              //input 차단하는 기능 = ignoring=true
+              ignoring: _verificationStatus == VerificationStatus.verifying,
+              child: Form(
+                key: formKey,
+                child: Padding(
+                  padding: const EdgeInsets.all(commonPadding),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
+                        children: [
+                          ExtendedImage.asset(
+                            'assets/imgs/lock.png',
+                            width: size.width * 0.15,
+                          ),
+                          Text('''당근마켓은 휴대폰 번호로 가입해요.
 번호는 안전하게 보관되며 
 어디에도 공개되지 않아요''', style: Theme.of(context).textTheme.subtitle1),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: commonPadding,
-                    ),
-                    TextFormField(
-                      controller: phoneController,
-                      decoration: InputDecoration(border: inputBorder),
-                      inputFormatters: [MaskedInputFormatter("000-0000-0000")],
-                      keyboardType: TextInputType.phone,
-                      validator:(phone){
-                        if(phone!=null && phone.length==13){
-                          return null;
-                        }else{
-                          return "전화번호를 확인해주세요";
-                        }
-                      }
-                    ),
-                    const SizedBox(height:10),
-                    TextButton(
-                      child:const Text("인증문자 받기"),
-                      onPressed: (){
-                        if(formKey.currentState!=null){
-                          bool passed = formKey.currentState!.validate();
-                          if(passed) {
-                            setState((){
-                              _verificationStatus=VerificationStatus.codeSent;
-                            });
-                          }
-                        }
-                      },
-                    ),
-                    const SizedBox(height:commonPadding),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds:300),
-                      curve: Curves.easeInOut,
-                      height:getVerificationStatus(_verificationStatus),
-                      child:
-                      SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            TextFormField(
-                              decoration: InputDecoration(border: inputBorder),
-                              keyboardType: TextInputType.number,
-                              controller:codeController,
-                              inputFormatters: [MaskedInputFormatter("000000")],
-                            ),
-                            const SizedBox(height:10),
-                            TextButton(
-                              child:const Text("인증번호 확인"),
-                              onPressed: (){},
-                            ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: commonPadding,
+                      ),
+                      TextFormField(
+                          controller: phoneController,
+                          decoration: InputDecoration(border: inputBorder),
+                          inputFormatters: [
+                            MaskedInputFormatter("000-0000-0000")
                           ],
+                          keyboardType: TextInputType.phone,
+                          validator: (phone) {
+                            if (phone != null && phone.length == 13) {
+                              return null;
+                            } else {
+                              return "전화번호를 확인해주세요";
+                            }
+                          }),
+                      const SizedBox(height: 10),
+                      TextButton(
+                        child: const Text("인증문자 받기"),
+                        onPressed: () {
+                          if (formKey.currentState != null) {
+                            bool passed = formKey.currentState!.validate();
+                            if (passed) {
+                              setState(() {
+                                _verificationStatus =
+                                    VerificationStatus.codeSent;
+                              });
+                            }
+                          }
+                        },
+                      ),
+                      const SizedBox(height: commonPadding),
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                        height: getVerificationStatus(_verificationStatus),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              TextFormField(
+                                decoration:
+                                    InputDecoration(border: inputBorder),
+                                keyboardType: TextInputType.number,
+                                controller: codeController,
+                                inputFormatters: [
+                                  MaskedInputFormatter("000000")
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              TextButton(
+                                child: (_verificationStatus ==
+                                        VerificationStatus.verifying)
+                                    ? CircularProgressIndicator(
+                                        color: Colors.white,
+                                      )
+                                    : Text("인증번호 확인"),
+                                onPressed: () {
+                                  //키보드 내리기
+                                  FocusScopeNode currFocus = FocusScope.of(context);
+                                  currFocus.unfocus();
+                                  //
+                                  attemptVerify();
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -116,8 +137,9 @@ class _AuthPageState extends State<AuthPage> {
       },
     );
   }
-  double getVerificationStatus(VerificationStatus status){
-    switch(status){
+
+  double getVerificationStatus(VerificationStatus status) {
+    switch (status) {
       case VerificationStatus.none:
         return 0;
       case VerificationStatus.codeSent:
@@ -127,7 +149,14 @@ class _AuthPageState extends State<AuthPage> {
     }
   }
 
+  void attemptVerify() async {
+    setState(() {
+      _verificationStatus = VerificationStatus.verifying;
+    });
+    await Future.delayed(Duration(seconds: 2));
+
+    setState(() {
+      _verificationStatus = VerificationStatus.done;
+    });
+  }
 }
-
-
-
