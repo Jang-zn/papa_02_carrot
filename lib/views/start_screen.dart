@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:papa_02_carrot/views/start/address_page.dart';
 import 'package:papa_02_carrot/views/start/auth_page.dart';
-import 'package:papa_02_carrot/views/start/intro.dart';
+import 'package:papa_02_carrot/views/start/intro_page.dart';
 
 class StartScreen extends StatefulWidget {
   StartScreen({Key? key}) : super(key: key);

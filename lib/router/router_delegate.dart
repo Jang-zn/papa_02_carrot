@@ -1,5 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:papa_02_carrot/router/locations.dart';
+import 'package:papa_02_carrot/states/user_provider.dart';
+import 'package:provider/provider.dart';
 
 final routerDelegate = BeamerDelegate(
   locationBuilder: BeamerLocationBuilder(
@@ -14,7 +16,7 @@ final routerDelegate = BeamerDelegate(
       pathPatterns: ['/'],
       check: (context, location) {
         //유효성검사 로직
-        return false;
+        return context.watch<UserProvider>().userState;
       },
       beamToNamed: (origin, target)=>'/auth',
     ),

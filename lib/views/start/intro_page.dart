@@ -2,6 +2,10 @@
 
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../states/user_provider.dart';
+import '../../utils/logger.dart';
 
 class IntroPage extends StatelessWidget {
   IntroPage(this.pageController, {Key? key,}) : super(key: key);
@@ -14,6 +18,7 @@ class IntroPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    logger.d("current user : ${context.read<UserProvider>().userState}");
     return LayoutBuilder(
       builder: (context, constraints) {
         //maybeOf 로 medaiQuery 있는지 없는지도 확인 가능
