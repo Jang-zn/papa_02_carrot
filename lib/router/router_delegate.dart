@@ -2,8 +2,6 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:papa_02_carrot/router/home_location.dart';
 import 'package:papa_02_carrot/states/user_provider.dart';
-import 'package:papa_02_carrot/views/home_screen.dart';
-import 'package:papa_02_carrot/views/start/auth_page.dart';
 import 'package:papa_02_carrot/views/start/start_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +17,7 @@ final routerDelegate = BeamerDelegate(
       check: (BuildContext context, BeamLocation<BeamState> location) {
         return context.watch<UserProvider>().userState;
       },
-      showPage: BeamPage(child:StartScreen()),
+      showPage: BeamPage(child:const StartScreen()),
     ),
   ],
 );

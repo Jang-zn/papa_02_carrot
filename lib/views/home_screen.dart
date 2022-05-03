@@ -1,6 +1,4 @@
-import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:papa_02_carrot/constant/common_constant.dart';
 import 'package:papa_02_carrot/states/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(onPressed: (){
             context.read<UserProvider>().setUserAuth(false);
             // Beamer.of(context).beamToReplacementNamed('/');
-          },icon:Icon(Icons.logout))
+          },icon:const Icon(Icons.logout))
         ]
       ),
       body: Container(

@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:dio/dio.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -67,6 +68,14 @@ class IntroPage extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    TextButton(
+                        child:const Text("DIO Test"),
+                        onPressed: () async {
+                          var response = await Dio().get('https://randomuser.me/api/');
+                          logger.d(response);
+                        },
+                    ),
+
                     TextButton(
                       child: const Text(
                         "내 동네 설정하고 시작하기",
