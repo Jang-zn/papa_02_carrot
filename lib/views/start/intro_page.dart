@@ -69,14 +69,6 @@ class IntroPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     TextButton(
-                        child:const Text("DIO Test"),
-                        onPressed: () async {
-                          var response = await Dio().get('https://randomuser.me/api/');
-                          logger.d(response);
-                        },
-                    ),
-
-                    TextButton(
                       child: const Text(
                         "내 동네 설정하고 시작하기",
                         style: TextStyle(
