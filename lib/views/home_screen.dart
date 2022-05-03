@@ -13,29 +13,20 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  void userLogout(){
-    context.read<UserProvider>().setUserAuth(false);
-    Beamer.of(context,).beamToNamed('/');
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar : AppBar(
+        actions:[
+          IconButton(onPressed: (){
+            context.read<UserProvider>().setUserAuth(false);
+            // Beamer.of(context).beamToReplacementNamed('/');
+          },icon:Icon(Icons.logout))
+        ]
+      ),
       body: Container(
         color:Colors.blue,
-        child:Center(
-          child:Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("HomePage", style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold,)),
-              SizedBox(height:commonPadding),
-              TextButton(
-                child:Text("LogOut"),
-                onPressed: userLogout,
-              )
-            ],
-          )
-        )
+
       ),
     );
   }

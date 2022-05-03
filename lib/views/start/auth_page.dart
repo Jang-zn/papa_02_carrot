@@ -166,8 +166,8 @@ class _AuthPageState extends State<AuthPage> {
 
     //로그인처리 --> Provider 변경함수 호출시에는 read 써야 무한루프 안돈다..
     context.read<UserProvider>().setUserAuth(true);
-    Beamer.of(
-      context,
-    ).beamToNamed('/home');
+    // Beamer.of(
+    //   context,
+    // ).beamToReplacementNamed('/home');
   }
 }
