@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:dio/dio.dart';
 import 'package:papa_02_carrot/constant/key.dart';
+import 'package:papa_02_carrot/data/address_model.dart';
 import 'package:papa_02_carrot/utils/logger.dart';
 
 class AddressService {
@@ -22,7 +25,8 @@ class AddressService {
         },
     );
     //response가 Json형태 (Map)으로 날라온다
-
+    AddressModel addressModel = AddressModel.fromJson(response.data['response']);
+    logger.d(addressModel.toJson());
   }
 
 
