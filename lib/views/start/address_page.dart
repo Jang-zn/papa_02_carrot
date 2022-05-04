@@ -2,10 +2,13 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:papa_02_carrot/views/start/service/address_service.dart';
 
 
 class AddressPage extends StatelessWidget {
-  const AddressPage({Key? key}) : super(key: key);
+  AddressPage({Key? key}) : super(key: key);
+
+  TextEditingController _addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +18,7 @@ class AddressPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TextFormField(
+            controller: _addressController,
             decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.search,
@@ -37,7 +41,12 @@ class AddressPage extends StatelessWidget {
           TextButton.icon(
             style: TextButton.styleFrom(
                 backgroundColor: Theme.of(context).primaryColor),
-            onPressed: () {},
+            onPressed: () {
+              final text = _addressController.text;
+              if(text.isNotEmpty){
+                AddressService().searchAddressByString(text);
+              }
+            },
             icon: Icon(CupertinoIcons.compass, color: Colors.white),
             label: Text(
               '현재위치로 찾기',
