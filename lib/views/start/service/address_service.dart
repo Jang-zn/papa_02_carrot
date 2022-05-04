@@ -21,7 +21,8 @@ class AddressService {
           logger.e(e.message);
         },
     );
-    logger.d(response);
+    //response가 Json형태 (Map)으로 날라온다
+
   }
 
 
