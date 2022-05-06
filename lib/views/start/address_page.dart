@@ -2,13 +2,21 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:papa_02_carrot/data/address_model.dart';
 import 'package:papa_02_carrot/views/start/service/address_service.dart';
 
 
-class AddressPage extends StatelessWidget {
+class AddressPage extends StatefulWidget {
   AddressPage({Key? key}) : super(key: key);
 
+  @override
+  State<AddressPage> createState() => _AddressPageState();
+}
+
+class _AddressPageState extends State<AddressPage> {
   TextEditingController _addressController = TextEditingController();
+
+  AddressModel? _addressModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +27,10 @@ class AddressPage extends StatelessWidget {
         children: [
           TextFormField(
             controller: _addressController,
+            onFieldSubmitted: (text) async {
+              _addressModel = await AddressService().searchAddressByString(text);
+              setState(() {});
+            },
             decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.search,
@@ -42,10 +54,7 @@ class AddressPage extends StatelessWidget {
             style: TextButton.styleFrom(
                 backgroundColor: Theme.of(context).primaryColor),
             onPressed: () {
-              final text = _addressController.text;
-              if(text.isNotEmpty){
-                AddressService().searchAddressByString(text);
-              }
+
             },
             icon: Icon(CupertinoIcons.compass, color: Colors.white),
             label: Text(
@@ -55,19 +64,20 @@ class AddressPage extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: (_addressModel==null||_addressModel!.result==null||_addressModel!.result!.items==null)?0:_addressModel!.result!.items!.length,
               itemBuilder: (context, index) {
+                if(_addressModel==null||_addressModel!.result==null||_addressModel!.result!.items==null||_addressModel!.result!.items![index].address==null) {
+                  return Container();
+                }
                 return Container(
-                  margin: EdgeInsets.symmetric(vertical: 4),
-                  color: Colors.accents[index],
                   child: ListTile(
-                    contentPadding: EdgeInsets.symmetric(vertical: 10),
+                    contentPadding: EdgeInsets.symmetric(vertical: 1),
                     leading: Icon(Icons.image),
                     title: Text(
-                      "address$index",
-                    ),
-                    subtitle: Text("subtitle$index"),
-                    trailing: Image.asset('assets/imgs/carrot_intro_pos.png'),
+                      _addressModel!.result!.items![index].address!.road??""
+                    ,style:TextStyle(fontSize: 14)),
+                    subtitle: Text(_addressModel!.result!.items![index].address!.parcel??""),
+                    trailing: Image.asset('assets/imgs/carrot_intro_pos.png', width: 20,),
                   ),
                 );
               },
