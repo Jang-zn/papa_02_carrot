@@ -6,6 +6,8 @@ import 'package:location/location.dart';
 import 'package:papa_02_carrot/data/address_model.dart';
 import 'package:papa_02_carrot/views/start/service/address_service.dart';
 
+import '../../data/location_model.dart';
+
 
 class AddressPage extends StatefulWidget {
   AddressPage({Key? key}) : super(key: key);
@@ -18,6 +20,7 @@ class _AddressPageState extends State<AddressPage> {
   TextEditingController _addressController = TextEditingController();
 
   AddressModel? _addressModel;
+  LocationModel? _locationModel;
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +83,7 @@ class _AddressPageState extends State<AddressPage> {
               }
 
               _locationData = await location.getLocation();
+              _locationModel = await AddressService().findAddressByCoordinate(log:_locationData.longitude!, lat:_locationData.latitude!);
             },
             icon: Icon(CupertinoIcons.compass, color: Colors.white),
             label: Text(
