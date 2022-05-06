@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 import 'package:papa_02_carrot/data/address_model.dart';
 import 'package:papa_02_carrot/views/start/service/address_service.dart';
 
@@ -53,8 +54,32 @@ class _AddressPageState extends State<AddressPage> {
           TextButton.icon(
             style: TextButton.styleFrom(
                 backgroundColor: Theme.of(context).primaryColor),
-            onPressed: () {
+            onPressed: () async {
 
+              //위치정보 사용동의
+              Location location = new Location();
+
+              bool _serviceEnabled;
+              PermissionStatus _permissionGranted;
+              LocationData _locationData;
+
+              _serviceEnabled = await location.serviceEnabled();
+              if (!_serviceEnabled) {
+                _serviceEnabled = await location.requestService();
+                if (!_serviceEnabled) {
+                  return;
+                }
+              }
+
+              _permissionGranted = await location.hasPermission();
+              if (_permissionGranted == PermissionStatus.denied) {
+                _permissionGranted = await location.requestPermission();
+                if (_permissionGranted != PermissionStatus.granted) {
+                  return;
+                }
+              }
+
+              _locationData = await location.getLocation();
             },
             icon: Icon(CupertinoIcons.compass, color: Colors.white),
             label: Text(

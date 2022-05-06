@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.papa_02_carrot">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
    <application
         android:label="papa_02_carrot"
         android:name="${applicationName}"
